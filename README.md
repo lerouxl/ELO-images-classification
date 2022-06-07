@@ -1,6 +1,6 @@
-#ELO images classification
+# ELO images classification
 
-##Goal:
+## Goal:
 This repository is goal is to implement the ELO images classification script and how to implement it on a server side.
 
 ## Use case:
