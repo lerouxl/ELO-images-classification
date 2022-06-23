@@ -5,6 +5,7 @@ from PIL import Image
 from torchvision import transforms
 import argparse
 from csv import writer
+from tqdm import tqdm
 
 
 def create_pretrain_model():
@@ -23,6 +24,23 @@ def create_pretrain_model():
     model.eval()
 
     return model
+
+
+def batch_classify(images_path, output_path):
+    """
+    Classify a list of images, dataloader are not use to avoid memory issues with big list of files.
+    :param images_path: list of path of images
+    :param output_path If not none, the prediction will be added to the targeted csv
+    :return:
+    """
+    # Create the torch model
+    model = create_pretrain_model()
+    # Classify the image
+    classification_list = []
+    for image_path in tqdm(images_path):
+        classification_list.append(classify_an_image(model, image_path, output_path))
+
+    return classification_list
 
 
 def classify_an_image(model, image_path, output_path):
