@@ -64,7 +64,11 @@ python part_extraction.py -i imgs/img_to_normalise/14-25-41.jpg --normalise -o o
 # Classify the image
 python predicte.py -i outs/out.jpg -o results.csv
 ```
-The cropped image is now:
+The normalised image is now:
+
+![Normalised monitoring image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/GUI_with_normalise.JPG?raw=true)
+
+And the cropped image is now:
 
 ![Crop raw image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/out_with_normalise.jpg?raw=true)
 
