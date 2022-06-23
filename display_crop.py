@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Tuple
 import argparse
 from part_extraction import part_extraction
+from utils import normalise
 
 global points
 global left_up
@@ -57,10 +58,13 @@ def onclick(event) -> None:
     plt.draw()
 
 
-def display(img_path: Path) -> Tuple[Tuple[int, int], Tuple[int, int]]:
+def display(
+    img_path: Path, normalise_flag: bool = False
+) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Display the desired image and allow to select the area to crop.
     :param img_path: pathlib.Path of the image to load
+    :param normalise_flag: Boolean value, if true the image will be normalise for display
     :return: left_up, right_down, 2 tuple containing the X,Y coordinates of the rectangle to crop.
     """
     global ax
@@ -69,6 +73,9 @@ def display(img_path: Path) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     global right_down_point
 
     img = mpimg.imread(img_path)
+    if normalise_flag:
+        img = normalise(img)
+
     fig, ax = plt.subplots()
     ax.imshow(img)
     ax.text(
@@ -99,11 +106,19 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", "--output_img", type=Path, help="Path to save the sub image"
     )
+    parser.add_argument(
+        "-n",
+        "--normalise",
+        action="store_true",
+        help="Flag if the images need to be normalised",
+    )
     args = parser.parse_args()
 
     # Display the image and allow user to click to select where to crop
-    left_up, right_down = display(args.input_img)
+    left_up, right_down = display(args.input_img, args.normalise)
 
-    part_extraction(args.input_img, left_up, right_down, args.output_img)
+    part_extraction(
+        args.input_img, left_up, right_down, args.output_img, args.normalise
+    )
     # Return the selected area;
     print((left_up, right_down))

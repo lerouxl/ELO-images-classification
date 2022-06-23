@@ -1,6 +1,6 @@
-# ELO images classification
+#ELO images classification
 
-## Goal:
+##Goal:
 This repository is goal is to implement the ELO images classification script and how to implement it on a server side.
 
 ## Use case:
@@ -11,19 +11,21 @@ The part image is saved in an **output folder**.
 Then a CNN model from our previous study 
 ([GitHub](https://github.com/lerouxl/Automatised-quality-assessment-in-additive-layer-manufacturing-using-layer-by-layer-surface-measurem), [DOI](https://doi.org/10.1016/j.procir.2021.03.050)) is applied to classify the image.
 The classification can be **saved in a csv** file.
+Image can be normalise using the **--normalise** or **-n** flag, this is usefull for image with low contrast. 
 
 ## Examples of use:
 To manualy select where to crop
 ```bash
 # Open a GUI to crop
 python display_crop -i imgs/demo_full_powder_bed.png -o outs/out.jpg
-# Classify the image
+# Classify the ima
+# ge
 python predicte.py -i outs/out.jpg -o results.csv
 ```
-To crop to a know location:
+To crop to a know location with normalisation:
 ```bash
 # crop
-python part_extraction.py -i imgs/demo_full_powder_bed.png -o outs/out.jpg -l 292 713 -r 590 1012
+python part_extraction.py -i imgs/demo_full_powder_bed.png --normalise -o outs/out.jpg -l 292 713 -r 590 1012
 # Classify the image
 python predicte.py -i outs/out.jpg -o results.csv
 ```

@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 from typing import Tuple
 from PIL import Image
+from utils import normalise
 
 
 def load_image(img: Path) -> Image:
@@ -11,6 +12,7 @@ def load_image(img: Path) -> Image:
     :return: PIL.Image
     """
     img = Image.open(img)
+    img = img.convert("RGB")
     return img
 
 
@@ -50,21 +52,31 @@ def save(img: Image, output_img: Path) -> None:
     output_img.parent.mkdir(parents=True, exist_ok=True)
     img.save(output_img)
 
-def part_extraction(img: Path,left_up: Tuple[int, int], right_down: Tuple[int, int], output_img: Path):
+
+def part_extraction(
+    img: Path,
+    left_up: Tuple[int, int],
+    right_down: Tuple[int, int],
+    output_img: Path,
+    normalise_flag: bool = False,
+):
     """
     Load the image, crop it and save it.
     :param img: Path to the image
     :param left_up: X,Y position of the left up corner
     :param right_down: X,Y position of the right down corner
     :param output_img: Path to save the image (with file name + extension)
+    :param normalise_flag: Flag to normalise of not the images.
     :return:
     """
     # Load the image specified as input
-    im = load_image(img)
+    img = load_image(img)
+    if normalise_flag:
+        img = normalise(img)
     # Crop the image
-    im = crop(img=im, left_up=left_up, right_down=right_down)
+    img = crop(img=img, left_up=left_up, right_down=right_down)
     # Save the cropped image
-    save(im, output_img)
+    save(img, output_img)
 
 
 if __name__ == "__main__":
@@ -89,12 +101,19 @@ if __name__ == "__main__":
         nargs="+",
         help="Right down coordinate of the image to extract (X,Y)",
     )
+    parser.add_argument(
+        "-n",
+        "--normalise",
+        action="store_true",
+        help="Flag if the images need to be normalised",
+    )
 
     args = parser.parse_args()
 
-    # Load the image specified as input
-    im = load_image(args.input_img)
-    # Crop the image
-    im = crop(img=im, left_up=args.left_up, right_down=args.right_down)
-    # Save the cropped image
-    save(im, args.output_img)
+    part_extraction(
+        img=args.input_img,
+        left_up=args.left_up,
+        right_down=args.right_down,
+        output_img=args.output_img,
+        normalise_flag=args.normalise,
+    )
