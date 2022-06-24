@@ -60,7 +60,8 @@ def main(
     batch_classify(image_to_classify, output_csv)
 
     # Generate html report
-    generate_html_report(output_csv, output_csv.with_suffix(".html"))
+    if html:
+        generate_html_report(output_csv, output_csv.with_suffix(".html"))
 
 
 if __name__ == "__main__":
