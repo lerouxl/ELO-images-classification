@@ -131,3 +131,24 @@ python batch.py --input_folder out --output_csv results.csv --html
  <br>
  <i>HTML report example</i>
 </p>
+
+### Image smoothing
+Monitoring images can have noise due to the image capture parameters, reducing the accuracy of the neural network classification.
+To reduce the effect of the ELO images artefact (those artefacts can be seen on the image ID 1 of the HTML report 
+example), the ELO images classification script have a smoothening option. 
+The smoothening filter must be applied multiple time to remove the noise features, a by our experience, 10 times seem to be a good number.
+```batch
+python batch.py --input_folder out --output_csv results.csv --html --smooth 10
+```
+
+Here is an example of a normal html report and another one with images with a 10 steps smoothing:
+
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/comparison_of_html_report_without_and_with_10_smooth?raw=true" alt="comparison of html report without and with_10 smoothening steps">
+ <br>
+ <i>Comparison of html report without and with_10 smoothening steps</i>
+</p>
+
+On the left, it appears that the neural network believe that all the images 63, 64 and 65 are porous.
+But the images only show artefacts. By smoothing those artefacts, right show that
+the neural networks can now correctly identity them as good layers.
