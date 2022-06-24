@@ -144,7 +144,7 @@ python batch.py --input_folder out --output_csv results.csv --html --smooth 10
 Here is an example of a normal html report and another one with images with a 10 steps smoothing:
 
 <p align="center">
- <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/comparison_of_html_report_without_and_with_10_smooth?raw=true" alt="comparison of html report without and with_10 smoothening steps">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/comparison_of_html_report_without_and_with_10_smooth.JPG?raw=true" alt="comparison of html report without and with_10 smoothening steps">
  <br>
  <i>Comparison of html report without and with_10 smoothening steps</i>
 </p>
