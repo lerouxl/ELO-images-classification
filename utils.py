@@ -53,6 +53,11 @@ def generate_html_report(input_csv: Path, output_path: Path) -> None:
         lines = ""
         for i, row in enumerate(csv_reader):
             row["id"] = i
+            # Transform all proba into float to avoid errors in the green collor attribbution
+            # with extremely low value interpreted as str (ex: 1e-4 > 0.9999)
+            for key in ["good", "porous", "bulging"]:
+                row[key] = float(row[key])
+
             row["clg"] = row["clp"] = row["clb"] = ""
             # Color in green the biggest value
             score = dict((k, row[k]) for k in ("good", "porous", "bulging"))
