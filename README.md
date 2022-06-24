@@ -118,3 +118,16 @@ If we already have preprocessed images, it's possible to directly classify them 
 ```batch
 python batch.py --input_folder out --output_csv results.csv 
 ```
+
+### HTML reports
+When processing batch of images, it can be hard to compare the neural network classification with the real images, as the csv file is only providing the image path and its classification score.
+To simplify this comparison task, a html report can be generated, with the `--html` argument, displaying the images and there classification score.
+the html report will be generated in the same folder of the csv file with the same name.
+```batch
+python batch.py --input_folder out --output_csv results.csv --html
+```
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/html_repport_example.JPG?raw=true" alt="HTML report example">
+ <br>
+ <i>HTML report example</i>
+</p>
