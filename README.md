@@ -14,7 +14,11 @@ Input images are expected to be in the **.jpg** format.
 The CSV output is made of 3 columns, image_path, good, porous and bulging. 
 Image_path is the path to the input images, and the 3 other scores are the classification probability with 1 equal to 100% and 0 to 0%.
 
-![CSV output example](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/csv.JPG?raw=true)
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/csv.JPG?raw=true" alt="CSV output example">
+ <br>
+ <i>CSV output example</i>
+</p>
 
 ## Examples of use:
 
@@ -37,8 +41,12 @@ python predicte.py -i outs/out.jpg -o results.csv
 ### Normalisation (recommended)
 
 If the image has no contrast, as in raw monitoring images, preprocessing steps are required. Here is an example of what can be seen with a non-normalised image for the crop GUI:
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/GUI_no_normalise.JPG?raw=true" alt="Raw monitoring image">
+ <br>
+ <i>Raw monitoring image</i>
+</p>
 
-![Raw monitoring image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/GUI_no_normalise.JPG?raw=true)
 
  If we extract a specific area to know if there is porosity or bulging, this area will lack contrast. 
  For example, the area ((934, 540), (986, 596)) was extracted from imgs/img_to_normalise/14-25-41.jpg and classified.
@@ -51,11 +59,19 @@ python predicte.py -i outs/out.jpg -o results.csv
 ```
 The cropped image is:
 
-![Crop raw image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/out_no_normalise.jpg?raw=true)
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/out_no_normalise.jpg?raw=true" alt="Crop raw image">
+ <br>
+ <i>Crop raw image</i>
+</p>
 
 And is classification results show that the neural network thinks the area is good, but by looking at it, we can guess porosity, which is hard to find due to the contrast.
 
-![Results raw image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/classification_no_normalise.JPG?raw=true)
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/classification_no_normalise.JPG?raw=true" alt="Result with a raw image">
+ <br>
+ <i>Result with a raw image</i>
+</p>
 
 If we redo the same previous step but by normalising the image, the classification is now good:
 ```bash
@@ -65,17 +81,29 @@ python part_extraction.py -i imgs/img_to_normalise/14-25-41.jpg --normalise -o o
 python predicte.py -i outs/out.jpg -o results.csv
 ```
 The normalised image is now:
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/GUI_with_normalise.JPG?raw=true" alt="Normalised monitoring image">
+ <br>
+ <i>Normalised monitoring image</i>
+</p>
 
-![Normalised monitoring image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/GUI_with_normalise.JPG?raw=true)
 
 And the cropped image is now:
 
-![Crop raw image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/out_with_normalise.jpg?raw=true)
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/out_with_normalise.jpg?raw=true" alt="Crop raw image">
+ <br>
+ <i>Crop raw image</i>
+</p>
 
 In this image, we can now see the porosity that was hard to see in the non-normalised image. 
 And the classification results show now that the neural network is sure that there is a porosity. 
 
-![Results raw image](https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/classification_with_normalise.JPG?raw=true)
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/classification_with_normalise.JPG?raw=true" alt="Results raw image">
+ <br>
+ <i>Results raw image</i>
+</p>
 
 ### Batch processing
 It may be useful to process and classify all the images from a folder, the batch script was made for this use:
