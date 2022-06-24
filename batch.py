@@ -14,7 +14,8 @@ def main(
     left_up,
     right_down,
     normalise: bool,
-    html: bool
+    html: bool,
+    smooth: int,
 ) -> None:
     """
     Process a batch of inputs
@@ -25,7 +26,8 @@ def main(
     :param left_up:
     :param right_down:
     :param normalise:
-    :param html
+    :param html:
+    :param smooth:
     :return:
     """
     output_csv = Path(output_csv)
@@ -49,6 +51,7 @@ def main(
                 right_down=right_down,
                 output_img=output_img,
                 normalise_flag=normalise,
+                smooth=smooth,
             )
             image_to_classify.append(output_img)
     else:
@@ -112,6 +115,13 @@ if __name__ == "__main__":
         "--html",
         action="store_true",
         help="Flag if a html document should be generated (same name than the css)",
+    )
+    parser.add_argument(
+        "-s",
+        "--smooth",
+        type=int,
+        default=0,
+        help="Number of times images must be smoothed",
     )
 
     args = parser.parse_args()

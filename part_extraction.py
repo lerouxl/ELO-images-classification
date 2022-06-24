@@ -2,17 +2,23 @@ import argparse
 from pathlib import Path
 from typing import Tuple
 from PIL import Image
+from PIL import ImageFilter
 from utils import normalise
 
 
-def load_image(img: Path) -> Image:
+def load_image(img: Path, smooth: int) -> Image:
     """
     Load an image from the path.
     :param img : (Path) Path to the image to load
+    :param smooth: (int) Number of time images are smooth, allow to reduce the effect of compresion artefact.
     :return: PIL.Image
     """
     img = Image.open(img)
     img = img.convert("RGB")
+
+    for i in range(smooth):
+        img = img.filter(ImageFilter.SMOOTH_MORE)
+
     return img
 
 
@@ -59,6 +65,7 @@ def part_extraction(
     right_down: Tuple[int, int],
     output_img: Path,
     normalise_flag: bool = False,
+    smooth: int = 0,
 ):
     """
     Load the image, crop it and save it.
@@ -67,10 +74,11 @@ def part_extraction(
     :param right_down: X,Y position of the right down corner
     :param output_img: Path to save the image (with file name + extension)
     :param normalise_flag: Flag to normalise of not the images.
+    :param smooth: Number of times images must be smoothed
     :return:
     """
     # Load the image specified as input
-    img = load_image(img)
+    img = load_image(img, smooth)
     if normalise_flag:
         img = normalise(img)
     # Crop the image
