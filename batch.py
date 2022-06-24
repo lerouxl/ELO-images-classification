@@ -3,6 +3,7 @@ from pathlib import Path
 from part_extraction import part_extraction
 from predicte import create_pretrain_model, batch_classify
 from tqdm import tqdm
+from utils import generate_html_report
 
 
 def main(
@@ -13,6 +14,7 @@ def main(
     left_up,
     right_down,
     normalise: bool,
+    html: bool
 ) -> None:
     """
     Process a batch of inputs
@@ -23,8 +25,12 @@ def main(
     :param left_up:
     :param right_down:
     :param normalise:
+    :param html
     :return:
     """
+    output_csv = Path(output_csv)
+    if output_csv.exists():
+        output_csv.unlink()
     # List all image in a folder
     all_images = list(Path(input_folder).glob("*.jpg"))
 
@@ -52,6 +58,9 @@ def main(
 
     print("Images classification")
     batch_classify(image_to_classify, output_csv)
+
+    # Generate html report
+    generate_html_report(output_csv, output_csv.with_suffix(".html"))
 
 
 if __name__ == "__main__":
@@ -97,6 +106,11 @@ if __name__ == "__main__":
         "--normalise",
         action="store_true",
         help="Flag if the images need to be normalised",
+    )
+    parser.add_argument(
+        "--html",
+        action="store_true",
+        help="Flag if a html document should be generated (same name than the css)",
     )
 
     args = parser.parse_args()
