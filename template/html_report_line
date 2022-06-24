@@ -1,0 +1,8 @@
+  <tr>
+    <td> $id </td>
+    <td> $image_path </td>
+    <td><img src="$image_path"></td>
+    <td $clg > $good </td>
+    <td $clp > $porous </td>
+    <td $clb> $bulging </td>
+  </tr>

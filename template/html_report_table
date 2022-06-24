@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ELO Images Classification</title>
+    <style>
+      p { color: #fff; }
+      h1 {text-align: center;}
+      .table {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border-collapse:collapse
+      }
+      table td img {
+        max-width:150px;
+        max-height:150px;
+      }
+      .green
+      {
+        background-color: green;
+      }
+    </style>
+</head>
+<body>
+<h1>ELO Images Classification</h1>
+
+<table class= "table" border="1">
+  <tr>
+    <th>ID</th>
+    <th>Image name</th>
+    <th>Image</th>
+    <th>Good probability</th>
+    <th>Porous probability</th>
+    <th>Bulging probability</th>
+  </tr>
+$lines
+
+</table>
+</body>
+</html>
