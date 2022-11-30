@@ -21,7 +21,19 @@ Image_path is the path to the input images, and the 3 other scores are the class
 </p>
 
 ## V2:
-A second version was developed, working on .jpg, .png images and classify images in 3 categories (see [ELO_layer_image_classification](https://github.com/lerouxl/ELO_layer_image_classification)).
+A second version was developed, working on .jpg, .png images and classify images in 5 categories (see [ELO_layer_image_classification](https://github.com/lerouxl/ELO_layer_image_classification)).
+The 5 categories are:
+- bulging
+- edges
+- good
+- porous
+- powder
+
+<p align="center">
+ <img src="https://github.com/lerouxl/ELO-images-classification/blob/main/imgs/readme/csv_v2.JPG?raw=true" alt="CSV V2 output example">
+ <br>
+ <i>CSV output example</i>
+</p>
 
 ## Installation:
 Using the command line interface, move to this project, then:
