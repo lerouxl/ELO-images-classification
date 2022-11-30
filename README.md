@@ -20,7 +20,29 @@ Image_path is the path to the input images, and the 3 other scores are the class
  <i>CSV output example</i>
 </p>
 
-## Examples of use:
+## V2:
+A second version was developed, working on .jpg, .png images and classify images in 3 categories (see [ELO_layer_image_classification](https://github.com/lerouxl/ELO_layer_image_classification)).
+
+## Installation:
+Using the command line interface, move to this project, then:
+1- Create a virtual environment: `python -m venv ./venv` (Python 3.7 is recommended)
+2- Activate the environment: `venv\Scripts\activate`
+3- Install the dependence: `pip install -r requirements.txt`
+
+## V2: Examples of use:
+
+To classify one image:
+```bash
+python predicte_v2.py -i outs/out.jpg -o results.csv
+```
+To classify all images in a folder:
+```batch 
+python predicte_v2.py -b outs/ -o results2.csv
+```
+Where `outs/` is the folder containing images to be classified.
+Images pre processing code of the V1 can still be used.
+
+## V1: Examples of use:
 
 ### Crop:
 To manualy select where to crop:
